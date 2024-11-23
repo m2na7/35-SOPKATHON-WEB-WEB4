@@ -13,7 +13,7 @@ export const mainStyle = css`
   align-items: center;
   padding: 1.4rem 2rem 4rem;
   width: 100%;
-  min-height: 63.1rem;
+  min-height: calc(100dvh - 9rem);
 `;
 
 export const topSection = (theme: Theme) => css`
@@ -52,13 +52,19 @@ export const textareaSection = (theme: Theme) => css`
   margin-top: 3.4rem;
 `;
 
-export const textareaStyle = (theme: Theme) => css`
+export const textareaStyle = (bgImage: string) => (theme: Theme) => css`
   text-align: center;
   vertical-align: center;
   width: 100%;
   height: 100%;
   padding: 2rem;
   border: none;
+  border-radius: 8px;
+
+  background-image: url(${bgImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: transparent;
   color: ${theme.color.white};
   ${theme.font.body1_r_16};
@@ -68,7 +74,7 @@ export const textareaStyle = (theme: Theme) => css`
   }
 `;
 
-export const selectBackgroundContainer = (theme: Theme) => css`
+export const selectBackgroundContainer = css`
   display: flex;
   justify-content: center;
   gap: 0.4rem;
@@ -76,19 +82,6 @@ export const selectBackgroundContainer = (theme: Theme) => css`
 
   margin-top: 1.8rem;
   margin-bottom: 2.4rem;
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 5.6rem;
-    height: 5.6rem;
-
-    border: 1px solid ${theme.color.white};
-    border-radius: 8px;
-    background-color: ${theme.color.black};
-    color: ${theme.color.white};
-  }
 `;
 
 export const uploadButton = (theme: Theme) => css`
@@ -106,4 +99,10 @@ export const uploadButton = (theme: Theme) => css`
 
   color: ${theme.color.black};
   ${theme.font.subtitle3_b_18};
+`;
+
+export const imgSelectIcon = css`
+  width: 5.6rem;
+  height: 5.6rem;
+  cursor: pointer;
 `;

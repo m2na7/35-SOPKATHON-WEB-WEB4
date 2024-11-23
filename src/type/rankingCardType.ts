@@ -1,4 +1,5 @@
 export interface RankingCardType {
-  text: string;
+  failId: number;
+  content: string;
   count: number;
 }

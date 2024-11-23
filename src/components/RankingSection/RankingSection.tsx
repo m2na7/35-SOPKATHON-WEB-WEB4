@@ -14,7 +14,13 @@ const RankingSection = ({ rankingData }: RankingSectionProps) => {
       </h1>
       <div css={rankingWrapper}>
         {rankingData.map((data, index) => (
-          <RankingCard key={index} rank={index} text={data.text} count={data.count} />
+          <RankingCard
+            key={data.failId}
+            rank={index}
+            content={data.content}
+            count={data.count}
+            failId={data.failId}
+          />
         ))}
       </div>
     </section>

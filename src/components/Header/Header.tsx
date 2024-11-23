@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { headerContainer } from './Header.style';
-import { IcLogo } from '@assets/svg';
+import { backIcon, headerContainer } from './Header.style';
+import { IcArrowLeft, IcLogo } from '@assets/svg';
 
 interface HeaderProps {
   isGoBack: boolean;
@@ -14,7 +14,13 @@ const Header = ({ isGoBack }: HeaderProps) => {
   };
   return (
     <header css={headerContainer}>
-      <section>{isGoBack && <button onClick={handleBackClick}>뒤</button>}</section>
+      <section>
+        {isGoBack && (
+          <button onClick={handleBackClick}>
+            <IcArrowLeft css={backIcon} />
+          </button>
+        )}
+      </section>
       <section>
         <IcLogo />
       </section>

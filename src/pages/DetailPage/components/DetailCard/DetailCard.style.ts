@@ -1,7 +1,7 @@
 import { Theme } from '@emotion/react';
 import { css } from '@emotion/react';
 
-const detailCardWrapper = (theme: Theme) => css`
+const detailCardWrapper = (randomImage: string) => css`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +9,9 @@ const detailCardWrapper = (theme: Theme) => css`
   position: relative;
   min-height: 37.5rem;
   padding: 8rem 2rem;
-  background-color: ${theme.color.gray900};
+  background-image: ${randomImage};
+  background-size: cover;
+  background-position: center;
   margin-top: 4rem;
 `;
 

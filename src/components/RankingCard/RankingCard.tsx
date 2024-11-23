@@ -14,8 +14,11 @@ import {
   rankTextStyle,
 } from './Ranking.style';
 import { RankingCardType } from '@type/rankingCardType';
+import { useNavigate } from 'react-router-dom';
+import routhPath from '@routes/routhPath';
 
 interface RankingCardProps extends RankingCardType {
+  failId: number;
   rank: number;
 }
 
@@ -36,13 +39,17 @@ const getIconByRank = (rank: number) => {
   }
 };
 
-const RankingCard = ({ rank, text, count }: RankingCardProps) => {
+const RankingCard = ({ rank, content, count, failId }: RankingCardProps) => {
+  const navigate = useNavigate();
   const formattedCount = count.toString().padStart(2, '0');
   const RankIcon = getIconByRank(rank + 1);
   return (
-    <article css={cardContainer}>
+    <article
+      css={cardContainer}
+      onClick={() => navigate(routhPath.DETAIL.replace(':failId', String(failId)))}
+    >
       {RankIcon}
-      <p css={rankTextStyle}>{text}</p>
+      <p css={rankTextStyle}>{content}</p>
       <div css={emojiCountStyle}>
         <IcFire css={emojiIcon} />
         <div>{formattedCount}</div>

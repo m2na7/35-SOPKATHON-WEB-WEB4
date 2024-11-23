@@ -19,5 +19,9 @@ export const h1TextStyle = (theme: Theme) => css`
 `;
 
 export const gallerySection = css`
-  padding-bottom: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 7rem;
 `;

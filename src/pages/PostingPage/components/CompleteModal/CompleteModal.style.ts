@@ -1,30 +1,57 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
+
+const modalContainer = css`
+  width: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const modalFirstDiv = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem 0.8rem;
+`;
+
+const divideLine = (theme: Theme) => css`
+  width: 99%;
+  height: 1px;
+  background-color: ${theme.color.gray800};
+`;
 
 const modalTitle = (theme: Theme) => css`
-  margin-bottom: 3rem;
   ${theme.font.subtitle5_b_16}
+  color: ${theme.color.white};
   text-align: center;
 `;
 
 const modalContentWrapper = css`
   display: grid;
   gap: 0.8rem;
-  margin-bottom: 1rem;
-  text-align: center;
+  margin-top: 2rem;
   place-items: center;
 `;
 
-const modalImage = css`
+const modalIcon = css`
   width: 6rem;
   height: 6rem;
-  background-color: #f5f5f5;
 `;
 
 const modalDescription = (theme: Theme) => css`
   text-align: center;
   white-space: pre-line;
-  ${theme.font.body4_m_12}
+  ${theme.font.body2_m_14};
+  color: ${theme.color.white};
 `;
 
-export { modalTitle, modalContentWrapper, modalImage, modalDescription };
+export {
+  modalContainer,
+  modalFirstDiv,
+  modalTitle,
+  divideLine,
+  modalContentWrapper,
+  modalIcon,
+  modalDescription,
+};

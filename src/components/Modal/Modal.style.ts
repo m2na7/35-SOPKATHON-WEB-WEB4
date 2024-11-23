@@ -1,5 +1,4 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
 const modalBackDrop = css`
   position: fixed;
@@ -14,26 +13,30 @@ const modalBackDrop = css`
   z-index: 1;
 `;
 
-const modalContent = css`
+const modalContent = (theme: Theme) => css`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 1rem;
+  padding: 0 2rem 2rem;
   width: 26rem;
-  height: 24rem;
-  gap: 1rem;
-  background: white;
-  border-radius: 8px;
+  height: 25.2rem;
+  border: 1px solid ${theme.color.gray600};
+  background-color: ${theme.color.gray900};
+  border-radius: 10px;
   z-index: 2;
 `;
 
 const modalCloseButton = (theme: Theme) => css`
-  width: 17rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  background-color: ${theme.color.gray200};
+  width: 100%;
+  padding: 0.8rem 0;
+  background-color: ${theme.color.lime};
+  color: ${theme.color.black};
+  ${theme.font.subtitle3_b_18};
+  border-radius: 50px;
+  margin-top: 1.8rem;
+  cursor: pointer;
 `;
 
 export { modalBackDrop, modalContent, modalCloseButton };

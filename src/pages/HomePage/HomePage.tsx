@@ -5,51 +5,62 @@ import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import { Key, useEffect, useState } from 'react';
 import { gallerySection, h1TextStyle, rankingSection } from './HomePage.style';
-import { getAllFails } from '@/apis/getFails';
+import { getAllFails, getFailsRank } from '@/apis/getFails';
+import { EmojiType } from '@type/emojiType';
 
-const rankingData = [
-  {
-    text: '두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~',
-    count: 0,
-  },
-  {
-    text: '두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~',
-    count: 12,
-  },
-  {
-    text: '두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~',
-    count: 44,
-  },
-  {
-    text: '두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~',
-    count: 32,
-  },
-  {
-    text: '두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~두줄만 입력 가능하게~~~',
-    count: 3,
-  },
-];
+interface FailInfo {
+  failId: number;
+  content: string;
+  goodCount: number;
+  drinkCount: number;
+  pellikeonCount: number;
+  talentCount: number;
+  clickedEmoji: EmojiType;
+}
+
+interface RankingData {
+  failId: number;
+  content: string;
+  count: number;
+}
 
 const HomePage = () => {
-  const [failsInfos, setFailsInfos] = useState<any[]>([]); 
-  const [isLoading, setIsLoading] = useState(true);
+  const [failsInfos, setFailsInfos] = useState<FailInfo[]>([]);
+  const [rankingData, setRankingData] = useState<RankingData[]>([]);
 
   useEffect(() => {
     const fetchFails = async () => {
       try {
         const data = await getAllFails();
-        setFailsInfos(data.failInfos); 
+        setFailsInfos(data.failInfos);
       } catch (err) {
         if (err instanceof Error) {
-          console.error(err.message); 
+          console.error(err.message);
         }
-      } finally {
-        setIsLoading(false); 
+      }
+    };
+
+    const fetchRanking = async () => {
+      try {
+        const rankData = await getFailsRank();
+        const formattedRankingData = rankData.failDetailInfoList.map((fail: any) => ({
+          failId: fail.failId,
+          content: fail.content,
+          count: fail.goodCount + fail.drinkCount + fail.pellikeonCount + fail.talentCount,
+        }));
+        setRankingData(formattedRankingData);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error(err.message);
+        }
       }
     };
 
     fetchFails();
+    fetchRanking();
   }, []);
+
+  console.log(rankingData);
 
   return (
     <div>
@@ -60,26 +71,31 @@ const HomePage = () => {
       <h1 css={h1TextStyle}>
         <span>OOPSIE!</span> 갤러리
       </h1>
-      {failsInfos.map(
-        (fail: {
-          failId: Key | null | undefined;
-          content: string;
-          goodCount: number;
-          drinkCount: number;
-          pellikeonCount: number;
-          talentCount: number;
-        }) => (
-          <div key={fail.failId} css={gallerySection}>
-            <Card failId={fail.failId as number} content={fail.content} />
-            <Emoticon
-              goodCount={fail.goodCount}
-              drinkCount={fail.drinkCount}
-              pellikeonCount={fail.pellikeonCount}
-              talentCount={fail.talentCount}
-            />
-          </div>
-        )
-      )}
+      <section css={gallerySection}>
+        {failsInfos.map(
+          (fail: {
+            failId: Key | null | undefined;
+            content: string;
+            goodCount: number;
+            drinkCount: number;
+            pellikeonCount: number;
+            talentCount: number;
+            clickedEmoji: EmojiType;
+          }) => (
+            <div key={fail.failId}>
+              <Card failId={fail.failId as number} content={fail.content} />
+              <Emoticon
+                failId={fail.failId as number}
+                goodCount={fail.goodCount}
+                drinkCount={fail.drinkCount}
+                pellikeonCount={fail.pellikeonCount}
+                talentCount={fail.talentCount}
+                clickedEmoji={fail.clickedEmoji}
+              />
+            </div>
+          )
+        )}
+      </section>
       <Footer />
     </div>
   );

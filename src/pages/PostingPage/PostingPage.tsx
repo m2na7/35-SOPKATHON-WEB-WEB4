@@ -30,19 +30,19 @@ const iconMappings = [
     type: 'A',
     inactive: IcBgInactive1,
     active: IcBgActive1,
-    bgImage: 'public/svg/ic_failnote_1_335.svg',
+    bgImage: '/svg/ic_failnote_1_335.svg',
   },
   {
     type: 'B',
     inactive: IcBgInactive2,
     active: IcBgActive2,
-    bgImage: 'public/svg/ic_failnote_2_335.svg',
+    bgImage: '/svg/ic_failnote_2_335.svg',
   },
   {
     type: 'C',
     inactive: IcBgInactive3,
     active: IcBgActive3,
-    bgImage: 'public/svg/ic_failnote_3_335.svg',
+    bgImage: '/svg/ic_failnote_3_335.svg',
   },
 ];
 

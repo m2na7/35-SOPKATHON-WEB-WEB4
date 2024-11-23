@@ -49,7 +49,7 @@ export const textareaSection = (theme: Theme) => css`
   border: 1px solid ${theme.color.gray600};
   background-color: ${theme.color.gray900};
 
-  margin-top: 3.4rem;
+  margin-top: 3.3rem;
 `;
 
 export const textareaStyle = (bgImage: string) => (theme: Theme) => css`

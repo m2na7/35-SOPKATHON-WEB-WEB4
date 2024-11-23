@@ -1,6 +1,6 @@
 export default {
   HOME: '/',
-  MYPAGE: '/mypage/:userId',
+  MYPAGE: '/fails/my',
   POST: '/post',
   DETAIL: '/detail/:failId',
 };

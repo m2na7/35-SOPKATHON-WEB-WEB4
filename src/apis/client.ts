@@ -9,7 +9,7 @@ client.interceptors.request.use(
   (config) => {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      config.headers['userId'] = userId;
+      config.headers['userId'] = Number(userId);
     }
     return config;
   },

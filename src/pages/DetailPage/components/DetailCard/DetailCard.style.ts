@@ -10,6 +10,7 @@ const detailCardWrapper = (theme: Theme) => css`
   min-height: 37.5rem;
   padding: 8rem 2rem;
   background-color: ${theme.color.gray900};
+  margin-top: 4rem;
 `;
 
 const detailDescription = (theme: Theme) => css`

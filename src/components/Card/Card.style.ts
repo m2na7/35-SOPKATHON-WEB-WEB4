@@ -14,6 +14,13 @@ export const cardWrapper = (theme: Theme) => css`
 export const contentStyle = (theme: Theme) => css`
   ${theme.font.body1_m_16};
   color: ${theme.color.black};
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 `;
 
 export const moreButton = (theme: Theme) => css`

@@ -10,6 +10,10 @@ export const sectionContainer = (theme: Theme) => css`
   h1 {
     color: ${theme.color.white};
     ${theme.font.subtitle5_b_16};
+
+    span {
+      color: ${theme.color.lime};
+    }
   }
 `;
 
